@@ -1,0 +1,19 @@
+
+<h1>Checkout</h1>
+<form>
+    <div class="form-group">
+        <label for="exampleInputFullName">Full Name</label>
+        <input #fullname type="text" class="form-control" id="exampleInputFullName" aria-describedby="emailHelp" placeholder="Full Name" required>
+      </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input #email type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputMobile">Mobile </label>
+      <input #mobile type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Mobile Number" required>
+    </div>
+    <p>Total: Rs. {{shoppingCarService.getTotalAmount()}}</p>
+    <a class="btn btn-primary" href='{{apiBaseUrl}}/checkout?totalamount={{shoppingCarService.getTotalAmount()}}'>Pay</a>
+    <a class="btn btn-primary" routerLink="/">Cancel</a>
+  </form>

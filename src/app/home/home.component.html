@@ -1,0 +1,29 @@
+<div class="container">
+<div *ngIf="books.books.length > 0">
+  <div class="row">
+    <div class="col book-card" *ngFor="let book of books.books">
+       <div class="card" style="width: 18rem;">
+           <img class="card-img-top img-size" src={{book.imageUrl}} alt="Card image cap">
+           <div class="card-body">
+             <h5 class="card-title">{{book.title}}</h5>
+             <p class="card-text">ISBN: {{book.isbn}}</p>
+             <p class="card-text">ISBN: {{book.authors}}</p>
+             <p class="card-text">Rating: {{book.average_rating}}</p>
+             <p class="card-text">Rating Count: {{book.ratings_count}}</p>
+             <p class="card-text">Language: {{book.language_code}}</p>
+             <p class="card-text">Price: Rs. {{book.price}}</p>
+             <button class="btn btn-primary btn-block" (click) = addToCart(book)>Add to cart</button>
+           </div>
+         </div>
+    </div>
+</div>
+<div class="row">
+ <button class="btn btn-primary" (click) = getAllBooks(0)>First</button>
+ <button class="btn btn-primary" (click) = getAllBooks(books.previousPage) *ngIf="books.previousPage !== books.pageNumber">Prev</button>
+ <p> Page: {{books.pageNumber + 1}} of {{books.totalPages}}</p>
+ <button class="btn btn-primary" (click) = getAllBooks(books.nextPage) *ngIf="books.lastPage !== books.pageNumber">next</button>
+ <button class="btn btn-primary" (click) = getAllBooks(books.lastPage)>Last</button>
+</div>
+</div>
+ 
+</div>

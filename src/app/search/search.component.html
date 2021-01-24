@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+       <div class="input-group input-group-lg">
+         <input #bookTitle type="text" class="form-control input-lg" id="search-church" placeholder="Search Books By Title">
+         <span class="input-group-btn">
+           <button class="btn btn-outline-success btn-lg" (click) = searchBooks(bookTitle.value,0)>Search</button>
+         </span>
+       </div>
+     </div>
+   </div>
+   <div class="col" *ngIf="books.totalPages === 0">
+    <hr />
+    <h3>Search Result</h3>
+      <p>No results found for title "{{bookTitle.value}}"</p>
+    <hr >
+  </div>
+  <div *ngIf="books.books.length > 0">
+    <div class="col">
+      <hr />
+      <h3>Search Result</h3>
+      <p *ngIf="books?.totalPages === 0">No results found for title "{{bookTitle}}"</p>
+      <hr >
+    </div>
+    <div class="row">
+      <div class="col book-card" *ngFor="let book of books.books">
+         <div class="card" style="width: 18rem;">
+             <img class="card-img-top img-size" src="https://s3-ap-southeast-1.amazonaws.com/he-public-data/red-book-hi8d6431a.png" alt="Card image cap">
+             <div class="card-body">
+               <h5 class="card-title">{{book.title}}</h5>
+               <p class="card-text">ISBN: {{book.isbn}}</p>
+               <p class="card-text">ISBN: {{book.authors}}</p>
+               <p class="card-text">Rating: {{book.average_rating}}</p>
+               <p class="card-text">Rating Count: {{book.ratings_count}}</p>
+               <p class="card-text">Language: {{book.language_code}}</p>
+               <p class="card-text">Price: Rs. {{book.price}}</p>
+               <button class="btn btn-primary btn-block" (click) = addToCart(book)>Add to cart</button>
+             </div>
+           </div>
+      </div>
+  </div>
+  <div class="row">
+   <button class="btn btn-primary" (click) = searchBooks(bookTitle.value,0)>First</button>
+   <button class="btn btn-primary" (click) = searchBooks(bookTitle.value,books.previousPage) *ngIf="books.previousPage !== books.pageNumber">Prev</button>
+   <p> Page: {{books.pageNumber + 1}} of {{books.totalPages}}</p>
+   <button class="btn btn-primary" (click) = searchBooks(bookTitle.value,books.nextPage) *ngIf="books.lastPage !== books.pageNumber">next</button>
+   <button class="btn btn-primary" (click) = searchBooks(bookTitle.value,books.lastPage)>Last</button>
+  </div>
+  </div>
+   
+  </div>
